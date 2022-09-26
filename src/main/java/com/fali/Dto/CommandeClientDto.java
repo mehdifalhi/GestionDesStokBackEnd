@@ -5,6 +5,7 @@ import com.fali.entites.CommandeClient;
 import lombok.Builder;
 import lombok.Data;
 
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ private Long idCommandeClient;
 	
 	private ClientDto clientDto;
 	
-	
+
 	private List<LigneCommandeClientDto> ligneCommandeClients;
 	
 	

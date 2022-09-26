@@ -29,6 +29,8 @@ public class CommandeFournisseur implements Serializable{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long idCommandeFournisseur;
+
+		private String code;
 		
 		@Temporal(TemporalType.TIMESTAMP)
 		private Date dateCommande;

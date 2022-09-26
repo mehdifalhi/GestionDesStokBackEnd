@@ -49,7 +49,7 @@ public class VenteDto {
 		vente.setCode(venteDto.getCode());
 		vente.setDateVente(venteDto.getDateVente());
 		
-		return null;
+		return vente;
 		
 		
 	}

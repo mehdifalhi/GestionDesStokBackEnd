@@ -43,7 +43,11 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.flickr4java</groupId>
+			<artifactId>flickr4java</artifactId>
+			<version>3.0.6</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>

@@ -13,7 +13,8 @@ import java.util.List;
 public class CommandeFournisseurDto {
 	
 	private Long idCommandeFournisseur;
-	
+
+	private String code;
 	
 	private Date dateCommande;
 	
@@ -32,6 +33,7 @@ public class CommandeFournisseurDto {
 		}
 		return CommandeFournisseurDto.builder()
 				.idCommandeFournisseur(commandeFournisseur.getIdCommandeFournisseur())
+				.code(commandeFournisseur.getCode())
 				.dateCommande(commandeFournisseur.getDateCommande())
 				.fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
 			//	.ligneCommandeFournisseurs(LigneCommandeFournisseurDto.fromEntity(commandeFournisseur.getLigneCommandeFournisseurs()))
@@ -45,6 +47,7 @@ public class CommandeFournisseurDto {
 
 		CommandeFournisseur commandeFournisseur =new CommandeFournisseur();
 		commandeFournisseur.setIdCommandeFournisseur(commandeFournisseurDto.getIdCommandeFournisseur());
+		commandeFournisseur.setCode(commandeFournisseurDto.getCode());
 		commandeFournisseur.setDateCommande(commandeFournisseurDto.getDateCommande());
 		commandeFournisseur.setFournisseur(FournisseurDto.toEntity(commandeFournisseurDto.getFournisseur()));
 
