@@ -4,9 +4,8 @@ import java.math.BigDecimal;
 
 
 import com.fali.entites.Article;
-//import com.fali.entites.Category;
-//import com.fali.Dto.CategoryDto;
-//import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 import lombok.Builder;
 import lombok.Data;
@@ -39,8 +38,16 @@ public class ArticleDto {
 		if(article == null) {
 			return null;
 		}
-		
-		
+/*		ArticleDto articleDto = new ArticleDto();
+		articleDto.setIdArticle(article.getIdArticle());
+		articleDto.setCodeArticle(article.getCodeArticle());
+		articleDto.setDesignation(article.getDesignation());
+		articleDto.setPrixUnitaireHT(article.getPrixUnitaireHT());
+		articleDto.setTauxTva(article.getTauxTva());
+		articleDto.setPhoto(article.getPhoto());
+		articleDto.setCategory(CategoryDto.fromEntity(article.getCategory()));
+		return articleDto;*/
+
 		return ArticleDto.builder()
 				.idArticle(article.getIdArticle())
 				.codeArticle(article.getCodeArticle())

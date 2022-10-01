@@ -5,10 +5,10 @@ import java.util.List;
 import com.fali.entites.Client;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 
-@Builder
+//@Builder
 @Data
 public class ClientDto {
 
@@ -30,15 +30,24 @@ public class ClientDto {
 		if (client == null) {
 			return null;
 		}
+		ClientDto clientDto = new ClientDto();
+		clientDto.setIdClient(client.getIdClient());
+		clientDto.setNom(client.getNom());
+		clientDto.setPrenom(client.getPrenom());
+		clientDto.setAdresse(client.getAdresse());
+		clientDto.setPhoto(client.getPhoto());
+		clientDto.setMail(client.getMail());
 
-		return ClientDto.builder()
+		return clientDto;
+
+		/*return ClientDto.builder()
 				.idClient(client.getIdClient())
 				.nom(client.getNom())
 				.prenom(client.getPrenom())
 				.adresse(client.getAdresse())
 				.photo(client.getPhoto())
 				.mail(client.getMail())
-				.build();
+				.build();*/
 
 	}
 	

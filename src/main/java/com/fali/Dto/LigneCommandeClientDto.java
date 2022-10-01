@@ -2,11 +2,11 @@ package com.fali.Dto;
 
 import com.fali.entites.LigneCommandeClient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-@Builder
+//@Builder
 @Data
 public class LigneCommandeClientDto {
 
@@ -24,13 +24,20 @@ public static LigneCommandeClientDto fromEntity(LigneCommandeClient ligneCommand
 	if(ligneCommandeClient == null){
 		return null;
 	}
-	return LigneCommandeClientDto.builder()
+	LigneCommandeClientDto ligneCommandeClientDto = new LigneCommandeClientDto();
+	ligneCommandeClientDto.setIdLigneCdeClt(ligneCommandeClient.getIdLigneCdeClt());
+	ligneCommandeClientDto.setArticle(ArticleDto.fromEntity(ligneCommandeClient.getArticle()));
+	ligneCommandeClientDto.setQuantite(ligneCommandeClient.getQuantite());
+	ligneCommandeClientDto.setPrixUnitaire(ligneCommandeClient.getPrixUnitaire());
+
+	return ligneCommandeClientDto;
+/*	return LigneCommandeClientDto.builder()
 			.idLigneCdeClt(ligneCommandeClient.getIdLigneCdeClt())
 			.article(ArticleDto.fromEntity((ligneCommandeClient.getArticle())))
 			//.commandeClient(CommandeClientDto.fromEntity(ligneCommandeClient.getCommandeClient()))
 			.quantite(ligneCommandeClient.getQuantite())
 			.prixUnitaire(ligneCommandeClient.getPrixUnitaire())
-			.build();
+			.build();*/
 }
 
 

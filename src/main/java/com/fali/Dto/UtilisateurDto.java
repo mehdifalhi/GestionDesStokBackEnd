@@ -6,10 +6,10 @@ import java.util.List;
 import com.fali.entites.Utilisateur;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 
-@Builder
+//@Builder
 @Data
 public class UtilisateurDto {
 
@@ -35,14 +35,22 @@ public class UtilisateurDto {
 			return null;
 		}
 
-		return UtilisateurDto.builder()
+          UtilisateurDto utilisateurDto = new UtilisateurDto();
+		utilisateurDto.setIdUtilisateur(utilisateur.getIdUtilisateur());
+		utilisateurDto.setNom(utilisateur.getNom());
+		utilisateurDto.setPrenom(utilisateur.getPrenom());
+		utilisateurDto.setMotDePasse(utilisateur.getMotDePasse());
+		utilisateurDto.setPhoto(utilisateur.getPhoto());
+		utilisateurDto.setMail(utilisateur.getMail());
+		return utilisateurDto;
+	/*	return UtilisateurDto.builder()
 				.idUtilisateur(utilisateur.getIdUtilisateur())
 				.nom(utilisateur.getNom())
 				.prenom(utilisateur.getPrenom())
 				.motDePasse(utilisateur.getMotDePasse())
 				.photo(utilisateur.getPhoto())
 				.mail(utilisateur.getMail())
-				.build();
+				.build();*/
 
 	}
 	

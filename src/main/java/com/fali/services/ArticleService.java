@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface ArticleService {
 
-    ArticleDto save(ArticleDto dto);
+     ArticleDto save(ArticleDto dto);
 
-    ArticleDto findById(Long idArticle);
+     ArticleDto findById(Long id);
 
-    ArticleDto findByCodeArticle(String codeArticle);
+     ArticleDto findArticleByCodeArticle(String codeArticle);
 
-    List<ArticleDto> findAll();
+     List<ArticleDto> findAll();
 
-    void  delete(Long idArticle);
+     void  deleteById(Long id);
 }

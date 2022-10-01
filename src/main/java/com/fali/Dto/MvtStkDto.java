@@ -1,13 +1,13 @@
 package com.fali.Dto;
 
 import com.fali.entites.MvtStk;
-import lombok.Builder;
+//import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Builder
+//@Builder
 @Data
 public class MvtStkDto {
 
@@ -26,13 +26,20 @@ public class MvtStkDto {
 			return null;
 		}
 
-		return MvtStkDto.builder()
+		MvtStkDto mvtStkDto = new MvtStkDto();
+		mvtStkDto.setIdMvtStk(mvtStk.getIdMvtStk());
+		mvtStkDto.setDateMvt(mvtStk.getDateMvt());
+		mvtStkDto.setQuantite(mvtStk.getQuantite());
+		mvtStkDto.setTypeMvt(mvtStk.getTypeMvt());
+		mvtStkDto.setArticle(ArticleDto.fromEntity(mvtStk.getArticle()));
+		return mvtStkDto;
+	/*	return MvtStkDto.builder()
 				.idMvtStk(mvtStk.getIdMvtStk())
 				.dateMvt(mvtStk.getDateMvt())
 				.quantite(mvtStk.getQuantite())
 				.typeMvt(mvtStk.getTypeMvt())
 				.article(ArticleDto.fromEntity(mvtStk.getArticle()))
-				.build();
+				.build();*/
 	}
 
 	public static MvtStk toEntity(MvtStkDto mvtStkDto){

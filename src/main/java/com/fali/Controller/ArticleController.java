@@ -22,13 +22,13 @@ public class ArticleController implements ArticleApi {
     }
 
     @Override
-    public ArticleDto findById(Long idArticle) {
-        return articleService.findById(idArticle);
+    public ArticleDto findById(Long id) {
+        return articleService.findById(id);
     }
 
-    @Override
-    public ArticleDto findByCodeArticle(String codeArticle) {
-        return articleService.findByCodeArticle(codeArticle);
+      @Override
+    public ArticleDto findArticleByCodeArticle(String code) {
+        return articleService.findArticleByCodeArticle(code);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class ArticleController implements ArticleApi {
     }
 
     @Override
-    public void delete(Long idArticle) {
+    public void delete(Long id) {
 
-        articleService.delete(idArticle);
+        articleService.deleteById(id);
     }
 }

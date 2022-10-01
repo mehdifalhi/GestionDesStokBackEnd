@@ -6,10 +6,11 @@ import java.util.List;
 import com.fali.entites.Fournisseur;
 
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+//import lombok.Builder;
 import lombok.Data;
 
-@Builder
+//@Builder
 @Data
 public class FournisseurDto {
 	
@@ -24,8 +25,8 @@ private Long idFournisseur;
 	private String photo;
 	
 	private String mail;
-	
 
+	@JsonIgnore
 	private List<CommandeFournisseurDto> commandeFournisseurs;
 	
 	public static FournisseurDto fromEntity(Fournisseur fournisseur) {
@@ -33,14 +34,22 @@ private Long idFournisseur;
 			return null;
 		}
 
-		return FournisseurDto.builder()
+	FournisseurDto fournisseurDto = new FournisseurDto();
+		fournisseurDto.setIdFournisseur(fournisseur.getIdFournisseur());
+		fournisseurDto.setNom(fournisseur.getNom());
+		fournisseurDto.setPrenom(fournisseur.getPrenom());
+		fournisseurDto.setAdresse(fournisseur.getAdresse());
+		fournisseurDto.setPhoto(fournisseur.getPhoto());
+		fournisseurDto.setMail(fournisseur.getMail());
+		return fournisseurDto;
+		/*return FournisseurDto.builder()
 				.idFournisseur(fournisseur.getIdFournisseur())
 				.nom(fournisseur.getNom())
 				.prenom(fournisseur.getPrenom())
 				.adresse(fournisseur.getAdresse())
 				.photo(fournisseur.getPhoto())
 				.mail(fournisseur.getMail())
-				.build();
+				.build();*/
 
 	}
 	

@@ -6,11 +6,12 @@ import java.util.List;
 import com.fali.entites.Category;
 
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+//import lombok.Builder;
 import lombok.Data;
 
 
-@Builder
+//@Builder
 @Data
 public class CategoryDto {
 
@@ -21,7 +22,7 @@ public class CategoryDto {
 	private String code;
 	
 	private String designation;
-	
+	@JsonIgnore
 	private List<ArticleDto>  articlesDto;
 	
 	
@@ -31,19 +32,24 @@ public class CategoryDto {
 		if(category == null) {
 			return null ;
 					}
-		
-		return CategoryDto.builder()
+		CategoryDto categoryDto = new CategoryDto();
+		categoryDto.setIdCategory(category.getIdCategory());
+		categoryDto.setCode(category.getCode());
+		categoryDto.setDesignation(category.getDesignation());
+		return categoryDto;
+
+	/*	return CategoryDto.builder()
 				.idCategory(category.getIdCategory())
 				.code(category.getCode())
 				.designation(category.getDesignation())
-				.build();
+				.build();*/
 	}
 	
 	public static  Category toEntity(CategoryDto categoryDto) {
 		if(categoryDto == null) {
 			return null ;
 					}
-		Category category = new Category();
+		 Category category = new Category();
 		 category.setIdCategory(categoryDto.getIdCategory());
 		 category.setCode(categoryDto.getCode());
 		 category.setDesignation(categoryDto.getDesignation());

@@ -1,14 +1,15 @@
 package com.fali.Dto;
 
 import com.fali.entites.CommandeFournisseur;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+//import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
 
-@Builder
+//@Builder
 @Data
 public class CommandeFournisseurDto {
 	
@@ -17,13 +18,9 @@ public class CommandeFournisseurDto {
 	private String code;
 	
 	private Date dateCommande;
-	
-	
-	private FournisseurDto fournisseur;
-	
-	
-	
 
+	private FournisseurDto fournisseur;
+	@JsonIgnore
 	private List<LigneCommandeFournisseurDto> ligneCommandeFournisseurs;
 
 
@@ -31,13 +28,19 @@ public class CommandeFournisseurDto {
 		if(commandeFournisseur==null){
 			return null;
 		}
-		return CommandeFournisseurDto.builder()
+		CommandeFournisseurDto commandeFournisseurDto =new CommandeFournisseurDto();
+		commandeFournisseurDto.setIdCommandeFournisseur(commandeFournisseur.getIdCommandeFournisseur());
+		commandeFournisseurDto.setDateCommande(commandeFournisseur.getDateCommande());
+		commandeFournisseurDto.setFournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()));
+		return commandeFournisseurDto;
+
+	/*	return CommandeFournisseurDto.builder()
 				.idCommandeFournisseur(commandeFournisseur.getIdCommandeFournisseur())
 				.code(commandeFournisseur.getCode())
 				.dateCommande(commandeFournisseur.getDateCommande())
 				.fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
 			//	.ligneCommandeFournisseurs(LigneCommandeFournisseurDto.fromEntity(commandeFournisseur.getLigneCommandeFournisseurs()))
-				.build();
+				.build();*/
 	}
 
 	public static CommandeFournisseur toEntity(CommandeFournisseurDto commandeFournisseurDto ){

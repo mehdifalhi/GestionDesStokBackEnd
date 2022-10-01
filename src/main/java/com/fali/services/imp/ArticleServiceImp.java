@@ -2,8 +2,11 @@ package com.fali.services.imp;
 
 import com.fali.Dto.ArticleDto;
 import com.fali.entites.Article;
+import com.fali.exception.EntityNotFoundException;
+import com.fali.exception.ErrorsCodes;
 import com.fali.repositories.ArticleRepository;
 import com.fali.services.ArticleService;
+//import com.fali.validator.ArticleValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,18 +34,34 @@ public class ArticleServiceImp implements ArticleService {
     }
 
     @Override
-    public ArticleDto findById(Long idArticle) {
-        Optional<Article> article = articleRepository.findById(idArticle);
-        return Optional.of(ArticleDto.fromEntity(article.get())).orElseThrow(() ->
-                new RuntimeException("id not FOUND" + idArticle));
+    public ArticleDto findById(Long id) {
+
+
+
+
+         Optional<Article> article = articleRepository.findById(id);
+         ArticleDto dto = ArticleDto.fromEntity(article.get());
+        return Optional.of(dto).orElseThrow(() ->
+                new EntityNotFoundException("Aucun article avec l ID" +id+" n'est trouve dans lBDD",
+                        ErrorsCodes.ARTICLE_NOT_FOUND));
+   /*    if(idArticle==null){
+            log.error("Article not found");
+            return null;
+        }
+       return articleRepository.findById(idArticle)
+                .map(ArticleDto::fromEntity)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Aucun article avec l ID" +idArticle+" n'est trouve dans lBDD",
+                                ErrorsCodes.ARTICLE_NOT_FOUND));*/
     }
 
-    @Override
-    public ArticleDto findByCodeArticle(String codeArticle) {
-        Optional<Article> article = articleRepository.findArticleByCodeArticle(codeArticle);
+      @Override
+      public ArticleDto findArticleByCodeArticle(String codeArticle) {
+          Optional<Article> article = articleRepository.findArticleByCodeArticle(codeArticle);
         return Optional.of(ArticleDto.fromEntity(article.get()))
                 .orElseThrow(() ->
-                new RuntimeException("code not FOUND" + codeArticle));
+                new EntityNotFoundException("Aucun article avec l code" +codeArticle+" n'est trouve dans lBDD",
+                        ErrorsCodes.ARTICLE_NOT_FOUND));
     }
 
     @Override
@@ -53,8 +72,8 @@ public class ArticleServiceImp implements ArticleService {
     }
 
     @Override
-    public void delete(Long idArticle) {
+    public void deleteById(Long id) {
 
-        articleRepository.deleteById(idArticle);
+        articleRepository.deleteById(id);
            }
 }

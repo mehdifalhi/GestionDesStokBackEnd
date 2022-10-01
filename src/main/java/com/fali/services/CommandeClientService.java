@@ -9,7 +9,7 @@ public interface CommandeClientService {
 
     CommandeClientDto save(CommandeClientDto dto);
 
-    CommandeClientDto findById(Long idCommandeClient);
+    CommandeClientDto findById(Long id);
 
     CommandeClientDto findByCode(String code);
 

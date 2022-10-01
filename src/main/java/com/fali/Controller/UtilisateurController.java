@@ -22,7 +22,8 @@ public class UtilisateurController implements UtilisateurApi {
 
     @Override
     public UtilisateurDto findById(Long idUtilisateur) {
-        return utilisateurService.findById(idUtilisateur);
+
+       return utilisateurService.findById(idUtilisateur);
     }
 
     @Override

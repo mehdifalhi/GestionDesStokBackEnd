@@ -7,12 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -23,7 +18,14 @@ public class LigneCommandeClient implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idLigneCdeClt;
-	
+
+	@Column(name ="quantite")
+	private BigDecimal quantite;
+
+	@Column(name ="prixUnitaire")
+	private BigDecimal prixUnitaire;
+
+
 	@ManyToOne
 	@JoinColumn(name = "idArticle")
 	private Article article;
@@ -31,11 +33,8 @@ public class LigneCommandeClient implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idCommandeClient")
 	private CommandeClient commandeClient;
-	
-	private BigDecimal quantite;
-	
-	private BigDecimal prixUnitaire;
-	
+
+
 	
 	
 

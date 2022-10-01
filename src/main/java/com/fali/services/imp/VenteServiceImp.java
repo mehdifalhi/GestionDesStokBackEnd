@@ -33,12 +33,12 @@ public class VenteServiceImp implements VenteService {
 
     @Override
     public VenteDto save(VenteDto dto) {
-        List<String> articleErrors =new ArrayList<>();
+      //  List<String> articleErrors =new ArrayList<>();
         dto.getLigneVentes().forEach(ligneVenteDto -> {
             Optional<Article> article = articleRepository.findById(ligneVenteDto.getArticle().getIdArticle());
-            if(article.isPresent()){
+           /* if(article.isPresent()){
                 articleErrors.add("aucun article avec l'id "+ligneVenteDto.getArticle().getIdArticle() +"n'a ete trouve dans la BD");
-            }
+            }*/
 
         });
         Vente savedVentes = venteRepository.save(VenteDto.toEntity(dto));

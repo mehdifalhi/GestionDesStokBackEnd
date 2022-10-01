@@ -2,7 +2,8 @@ package com.fali.Dto;
 
 import com.fali.entites.CommandeClient;
 //import com.fali.entites.LigneCommandeClient;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+//import lombok.Builder;
 import lombok.Data;
 
 
@@ -11,41 +12,42 @@ import java.util.Date;
 import java.util.List;
 
 
-@Builder
+//@Builder
 @Data
 public class CommandeClientDto {
 	
-private Long idCommandeClient;
+    private Long idCommandeClient;
 	
 	private String code;
-	
-	
+
 	private Date dateCommande;
 	
 	private ClientDto clientDto;
-	
-
+    @JsonIgnore
 	private List<LigneCommandeClientDto> ligneCommandeClients;
-	
-	
-	
+
 	private BigDecimal totalCommande;
-
-
 
   public  static CommandeClientDto fromEntity(CommandeClient commandeClient){
 	  if(commandeClient == null){
 		  return  null;
 	  }
+      CommandeClientDto commandeClientDto = new CommandeClientDto();
+	  commandeClientDto.setIdCommandeClient(commandeClient.getIdCommandeClient());
+	  commandeClientDto.setCode(commandeClientDto.getCode());
+	  commandeClientDto.setDateCommande(commandeClient.getDateCommande());
+	  commandeClientDto.setClientDto(ClientDto.fromEntity(commandeClient.getClient()));
+	  commandeClientDto.setTotalCommande(commandeClient.getTotalCommande());
+	  return commandeClientDto;
 
-	  return CommandeClientDto.builder()
+	 	/* return CommandeClientDto.builder()
 			  .idCommandeClient(commandeClient.getIdCommandeClient())
 			  .code(commandeClient.getCode())
 			  .dateCommande(commandeClient.getDateCommande())
 			  .clientDto(ClientDto.fromEntity(commandeClient.getClient()))
 			 // .ligneCommandeClients(LigneCommandeClientDto.fromEntity(commandeClient.getLigneCommandeClients()))
 			  .totalCommande(commandeClient.getTotalCommande())
-			  .build();
+			  .build();*/
   }
 
   public static CommandeClient toEntity(CommandeClientDto commandeClientDto){

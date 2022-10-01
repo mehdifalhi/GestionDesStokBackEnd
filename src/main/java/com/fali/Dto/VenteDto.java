@@ -6,10 +6,11 @@ import java.util.List;
 import com.fali.entites.Vente;
 
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+//import lombok.Builder;
 import lombok.Data;
 
-@Builder
+//@Builder
 @Data
 public class VenteDto {
 
@@ -19,7 +20,7 @@ public class VenteDto {
 
 	private Date dateVente;
 
-
+	@JsonIgnore
 	private List<LigneVenteDto> ligneVentes;
 	
 	public static VenteDto fromEntity(Vente vente) {
@@ -28,13 +29,18 @@ public class VenteDto {
 			
 			return null;
 		}
+		VenteDto venteDto = new VenteDto();
+		venteDto.setIdVente(vente.getIdVente());
+		venteDto.setCode(vente.getCode());
+		venteDto.setDateVente(vente.getDateVente());
+		return venteDto;
 		
-		
-		return VenteDto.builder()
+	/*	return VenteDto.builder()
 				.idVente(vente.getIdVente())
 				.code(vente.getCode())
 				.dateVente(vente.getDateVente())
-				.build();
+
+				.build();*/
 	}
 	
 	public static Vente toEntity(VenteDto venteDto) {
